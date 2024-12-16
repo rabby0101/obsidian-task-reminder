@@ -1,11 +1,10 @@
 {
     "id": "task-reminder",
     "name": "Task Reminder",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "minAppVersion": "0.15.0",
     "description": "A simple task reminder plugin with Today, Scheduled, and Completed views.",
     "author": "Sk Fazla Rabby",
     "authorUrl": "https://github.com/rabby0101",
-    "fundingUrl": "https://obsidian.md/pricing",
     "isDesktopOnly": false
 }
