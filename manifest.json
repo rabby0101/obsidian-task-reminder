@@ -1,7 +1,7 @@
 {
     "id": "task-reminder",
     "name": "Task Reminder",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "minAppVersion": "0.15.0",
     "description": "A simple task reminder plugin with Today, Scheduled, and Completed views.",
     "author": "Sk Fazla Rabby",
