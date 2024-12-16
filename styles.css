@@ -1,8 +1,387 @@
-/*
+/* Minimal Tab Design */
+.reminder-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 16px;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+/* Regular tabs (Today and Scheduled) */
+.reminder-tab {
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    min-width: 0; /* Allow tabs to shrink */
+    width: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+}
 
-If your plugin does not need CSS, delete this file.
+/* Only expand tab to full width when it's active */
+.reminder-tab.is-expanded {
+    grid-column: 1 / -1;
+    order: -1; /* Move to top when expanded */
+}
 
-*/
+.reminder-tab:not(.is-expanded):not(.completed-tab) {
+    grid-column: auto;
+}
+
+/* Always keep completed tab full width at bottom */
+.reminder-tab.completed-tab {
+    grid-column: 1 / -1;
+    order: 1; /* Always at bottom */
+    margin-top: 8px;
+}
+
+.reminder-tab.is-expanded {
+    grid-column: 1 / -1;
+}
+
+.reminder-tab:not(.is-expanded) .reminder-tab-content {
+    display: none !important;
+}
+
+.reminder-tab.is-expanded .reminder-tab-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Remove hover transform */
+.reminder-tab:hover {
+    background: var(--background-secondary-alt);
+}
+
+/* Header Design */
+.reminder-tab-header {
+    padding: 8px;
+    background: var(--background-secondary);
+    border-bottom: 1px solid var(--background-modifier-border);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.reminder-tab-header-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+/* Simpler Icon Style */
+.tab-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--text-muted);
+}
+
+.today-icon {
+    color: var(--text-accent);
+}
+
+.scheduled-icon {
+    color: var(--text-muted);
+}
+
+.completed-icon {
+    color: var(--text-success);
+}
+
+/* Task Count Badge */
+.task-count {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+/* Collapse Indicator */
+.nav-folder-collapse-indicator {
+    padding: 0 4px;
+    margin-right: 4px;
+}
+
+/* Content Area */
+.reminder-tab-content {
+    padding: 8px;
+    background: var(--background-primary);
+}
+
+/* Make completed tab full width */
+.reminder-tab.completed-tab {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+}
+
+/* Remove existing shadows and animations */
+.nav-file-title {
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: background-color 0.1s ease;
+    min-width: 0;
+    padding: 6px;
+}
+
+.nav-file-title:hover {
+    background-color: var(--background-modifier-hover);
+}
+
+.reminder-tab-header:hover .tab-icon {
+    color: var(--text-normal);
+}
+
+/* Task Icons */
+.task-priority {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+}
+
+.priority-high {
+    color: var(--text-error);
+}
+
+.priority-medium {
+    color: var(--text-warning);
+}
+
+.priority-low {
+    color: var(--text-muted);
+}
+
+.priority-1 {
+    color: var(--text-error); /* High priority - usually red */
+}
+
+.priority-2 {
+    color: var(--text-warning); /* Medium priority - usually orange/yellow */
+}
+
+.priority-3 {
+    color: var(--text-muted); /* Low priority - usually gray */
+}
+
+.project-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    color: var(--text-muted);
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+.date-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    color: var(--text-muted);
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+/* Task project with icon */
+.task-project {
+    display: inline-flex;
+    align-items: center;
+    background: var(--background-modifier-hover);
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    color: var(--text-muted);
+    gap: 4px;
+    white-space: nowrap;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Modern Task Container */
+.reminder-tasks-container {
+    padding: 8px !important;
+    width: 100%;
+    min-width: 0; /* Allow container to shrink */
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nav-file {
+    animation: slideIn 0.2s ease-out;
+    margin: 4px 0;
+}
+
+/* Completed Tasks Tab */
+.reminder-tab.completed-tab {
+    grid-column: 1 / -1;  /* Make completed tab full width */
+    margin-top: 16px;
+}
+
+/* Task Count Badge */
+.task-count {
+    background: var(--background-modifier-hover);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.nav-file-title-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+/* Make task name truncate with ellipsis */
+.nav-file-title-content strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+/* Make project tag and date more compact */
+.task-date {
+    white-space: nowrap;
+}
+
+/* Make tags wrap properly */
+.task-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-width: 0;
+}
+
+.preview-tag {
+    white-space: nowrap;
+    margin-right: 0;
+}
+
+/* Compact header for small widths */
+.reminder-tab-header {
+    padding: 8px;
+}
+
+.task-count {
+    white-space: nowrap;
+}
+
+/* Make checkbox fixed size */
+.task-checkbox {
+    flex-shrink: 0;
+}
+
+/* Add responsive padding */
+@media (max-width: 300px) {
+    .reminder-tasks-container {
+        padding: 4px !important;
+    }
+    
+    .nav-file-title {
+        padding: 4px;
+    }
+    
+    .task-project {
+        max-width: 100px;
+    }
+}
+
+/* Handle expanded states */
+.reminder-tab.today-tab.is-expanded {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+.reminder-tab.scheduled-tab.is-expanded {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
+/* When today tab is expanded, move scheduled tab down */
+.reminder-tab.today-tab.is-expanded + .reminder-tab.scheduled-tab {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
+/* When scheduled tab is expanded, move today tab up if not expanded */
+.reminder-tab.scheduled-tab.is-expanded ~ .reminder-tab.today-tab:not(.is-expanded) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+/* Keep completed tab at bottom */
+.reminder-tab.completed-tab {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 8px;
+}
+
+/* Today tab icons */
+.today-tab .tab-icon:first-child {
+    margin-right: 2px;
+}
+
+.today-tab .tab-icon:last-child {
+    margin-right: 8px;
+    font-size: 0.9em;
+}
+
+/* Icon styling */
+.tab-icon svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-muted);
+}
+
+.today-icon svg {
+    color: var(--text-accent);
+}
+
+.scheduled-icon svg {
+    color: var(--text-muted);
+}
+
+.completed-icon svg {
+    color: var(--text-success);
+}
+
+/* Adjust Today tab icons spacing */
+.today-tab .tab-icon:first-child {
+    margin-right: 2px;
+}
+
+.today-tab .tab-icon:last-child {
+    margin-right: 8px;
+}
+
+/* Remove all project-related styles */
+.projects-section,
+.projects-header,
+.project-item,
+.project-header,
+.project-name,
+.project-name-container,
+.project-task-count,
+.project-tasks,
+.project-task-item,
+.collapse-icon {
+    display: none;
+}
